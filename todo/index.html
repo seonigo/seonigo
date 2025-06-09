@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple ToDo App</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>ToDo List</h1>
+    <form id="todo-form">
+        <input type="text" id="todo-input" placeholder="タスクを入力" required>
+        <button type="submit">追加</button>
+    </form>
+    <ul id="todo-list"></ul>
+
+    <script>
+        const form = document.getElementById('todo-form');
+        const input = document.getElementById('todo-input');
+        const list = document.getElementById('todo-list');
+
+        function loadTodos() {
+            const todos = JSON.parse(localStorage.getItem('todos')) || [];
+            todos.forEach(todo => addTodoItem(todo.text, todo.done));
+        }
+
+        function saveTodos() {
+            const items = [];
+            list.querySelectorAll('li').forEach(li => {
+                items.push({ text: li.querySelector('span').textContent, done: li.classList.contains('done') });
+            });
+            localStorage.setItem('todos', JSON.stringify(items));
+        }
+
+        function addTodoItem(text, done = false) {
+            const li = document.createElement('li');
+            const span = document.createElement('span');
+            span.textContent = text;
+            if (done) li.classList.add('done');
+            li.appendChild(span);
+
+            const removeBtn = document.createElement('button');
+            removeBtn.textContent = '削除';
+            removeBtn.addEventListener('click', () => {
+                li.remove();
+                saveTodos();
+            });
+
+            li.addEventListener('click', () => {
+                li.classList.toggle('done');
+                saveTodos();
+            });
+
+            li.appendChild(removeBtn);
+            list.appendChild(li);
+        }
+
+        form.addEventListener('submit', e => {
+            e.preventDefault();
+            const text = input.value.trim();
+            if (text) {
+                addTodoItem(text);
+                saveTodos();
+                input.value = '';
+            }
+        });
+
+        loadTodos();
+    </script>
+</body>
+</html>
