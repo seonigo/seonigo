@@ -1,16 +1,18 @@
-## Hi there 👋
+# Seonigo ToDo App
 
-<!--
-**seonigo/seonigo** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
+This repository contains a very simple ToDo application implemented with plain HTML, CSS and JavaScript. You can run it locally by opening `todo/index.html` in your web browser.
 
-Here are some ideas to get you started:
+## Features
 
-- 🔭 I’m currently working on ...
-- 🌱 I’m currently learning ...
-- 👯 I’m looking to collaborate on ...
-- 🤔 I’m looking for help with ...
-- 💬 Ask me about ...
-- 📫 How to reach me: ...
-- 😄 Pronouns: ...
-- ⚡ Fun fact: ...
--->
+- Add new tasks
+- Mark tasks as complete by clicking them
+- Delete tasks
+- Tasks are saved in your browser's localStorage
+
+## Usage
+
+1. Clone the repository or download it as a ZIP file.
+2. Open `todo/index.html` in your favorite browser.
+3. Start adding tasks!
+
+Feel free to modify the code to suit your needs.
